@@ -50,10 +50,6 @@ pub fn cli() -> Command {
         .arg(arg!([KEY] "The key of the item complete"))
         .hide(true);
 
-    let install_completion = Command::new("install-completion")
-        .about("Install shell completion")
-        .hide(true);
-
     Command::new("memo")
         .subcommand_required(false)
         .arg_required_else_help(true)
@@ -64,5 +60,4 @@ pub fn cli() -> Command {
         .subcommand(set)
         .subcommand(copy)
         .subcommand(complete)
-        .subcommand(install_completion)
 }

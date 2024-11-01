@@ -44,9 +44,14 @@ sudo chmod +x /usr/local/bin/$PROJECT_NAME
 echo "Cleaning up build artifacts..."
 cargo clean
 
-cd -
+mkdir -p ~/.memo
+mv completion.sh ~/.memo/completion.sh
+
 
 echo "$PROJECT_NAME has been successfully installed!"
 echo "You can now run the project with the command: $PROJECT_NAME"
 
-memo install-completion
+echo "Completion script copied to ~/.memo"
+echo "Please add the following line to your .zshrc or .bashrc file:"
+echo "source ~/.memo/completion.sh"
+

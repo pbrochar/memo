@@ -1,8 +1,9 @@
 use home::home_dir;
 use serde::{Deserialize, Serialize};
+use serde_json::{json, to_writer_pretty};
 use std::collections::HashMap;
 use std::fs::{self, File};
-use std::path::{Path, PathBuf};
+use std::path::PathBuf;
 
 #[derive(Debug, Deserialize, Serialize)]
 pub struct MemoVariable {
@@ -95,14 +96,6 @@ impl Memo {
         })
     }
 
-    pub fn install_completion() -> Result<(), Box<dyn std::error::Error>> {
-        let memo_dir = Self::get_memo_dir()?;
-        let script_path = Path::new("src/scripts/completion.sh");
-
-        fs::copy(script_path, memo_dir.join("completion.sh"))?;
-        Ok(())
-    }
-
     fn write_to_file(&self) -> Result<(), Box<dyn std::error::Error>> {
         serde_json::to_writer_pretty(&File::create(&self.file_path)?, &self)?;
         Ok(())
@@ -118,8 +111,15 @@ impl Memo {
         let file_path = directory_path.join(filename);
 
         if !file_path.exists() {
-            let default_file = Path::new("src/default.json");
-            fs::copy(default_file, &file_path)?;
+            let default = json!({
+                "store": {},
+                "meta": {
+                    "last_key_used": ""
+                }
+            });
+            let file = File::create(&file_path)?;
+
+            to_writer_pretty(file, &default)?;
         }
 
         Ok(file_path)
