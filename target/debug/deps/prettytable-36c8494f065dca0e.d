@@ -1,0 +1,10 @@
+/Users/paulbrochard/perso/rust/projects/memo/target/debug/deps/libprettytable-36c8494f065dca0e.rmeta: /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/lib.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/cell.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/format.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/row.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/utils.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/csv.rs
+
+/Users/paulbrochard/perso/rust/projects/memo/target/debug/deps/prettytable-36c8494f065dca0e.d: /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/lib.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/cell.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/format.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/row.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/utils.rs /Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/csv.rs
+
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/lib.rs:
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/cell.rs:
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/format.rs:
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/row.rs:
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/utils.rs:
+/Users/paulbrochard/.cargo/registry/src/index.crates.io-6f17d22bba15001f/prettytable-0.10.0/src/csv.rs:
