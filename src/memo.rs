@@ -9,6 +9,12 @@ use std::path::PathBuf;
 pub struct MemoVariable {
     pub value: String,
     pub ttl: Option<String>,
+    #[serde(default = "default_timestamp")]
+    pub created_at: i64,
+}
+
+fn default_timestamp() -> i64 {
+    0
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -48,6 +54,7 @@ impl Memo {
             MemoVariable {
                 value: value.to_string(),
                 ttl,
+                created_at: chrono::Utc::now().timestamp(),
             },
         );
         self.meta.last_key_used = Some(key.to_string());
