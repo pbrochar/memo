@@ -1,1 +1,0 @@
-/Users/paulbrochard/perso/rust/projects/memo/target/release/memo: /Users/paulbrochard/perso/rust/projects/memo/src/cli.rs /Users/paulbrochard/perso/rust/projects/memo/src/commands.rs /Users/paulbrochard/perso/rust/projects/memo/src/main.rs /Users/paulbrochard/perso/rust/projects/memo/src/memo.rs
