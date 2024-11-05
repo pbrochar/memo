@@ -49,7 +49,7 @@ memo cp mykey
 ### set
 
 Set the value of a memo entry by key.
-It's useful if you wan to create or update a key.
+It's useful if you want to update a key.
 
 
 ### rm
@@ -63,9 +63,9 @@ You can use the --pretty flag to display the list in a more readable format.
 
 ## Auto-completion
 
-Memo CLI supports auto-completion for Bash, and Zsh. To enable auto-completion, run the following command:
-
-```sh
-memo install-completion
+Memo CLI supports dynamic auto-completion.
+For exemple:
+```bash
+memo get <tab>
 ```
 
