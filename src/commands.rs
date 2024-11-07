@@ -112,13 +112,20 @@ impl MemoCommandHandler<'_> {
         Ok(())
     }
 
-    pub fn list(&self, pretty: bool) {
+    pub fn list(&self, pretty: bool, ttl: bool, created: bool) {
         if pretty {
             let mut table = Table::new();
             let mut readable_ttl: String;
+            let mut title = vec!["Key", "Value"];
 
             table.set_format(*format::consts::FORMAT_NO_LINESEP_WITH_TITLE);
-            table.set_titles(row!["Key", "Value", "TTL"]);
+            if ttl {
+                title.push("TTL");
+            }
+            if created {
+                title.push("Created");
+            }
+            table.set_titles(title);
 
             for (key, value) in &self.memo.store {
                 match &value.ttl {
