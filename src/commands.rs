@@ -1,8 +1,9 @@
-use crate::memo::Memo;
+use crate::memo::{Memo, MemoVariable};
 use arboard::Clipboard;
+use chrono::DateTime;
 use std::{error::Error, i64};
 extern crate prettytable;
-use prettytable::{format, row, Table};
+use prettytable::{format, Row, Table};
 
 pub struct MemoCommand;
 
@@ -112,32 +113,65 @@ impl MemoCommandHandler<'_> {
         Ok(())
     }
 
-    pub fn list(&self, pretty: bool) {
+    fn format_ttl(ttl_value: &Option<String>) -> String {
+        match ttl_value {
+            Some(ttl) => {
+                let lifetime = ttl.parse::<i64>().unwrap_or(0) - chrono::Utc::now().timestamp();
+                format!("{}s", lifetime)
+            }
+            None => "null".to_string(),
+        }
+    }
+
+    fn get_row(&self, key: &str, value: &MemoVariable, ttl: bool, created: bool) -> Vec<String> {
+        let mut row = vec![key.to_string(), value.value.clone()];
+
+        if created {
+            let created_at = DateTime::from_timestamp(value.created_at, 0)
+                .map(|dt| dt.to_string())
+                .unwrap_or_else(|| "Invalid date".to_string());
+            row.push(created_at);
+        }
+
+        if ttl {
+            row.push(Self::format_ttl(&value.ttl));
+        }
+
+        row
+    }
+
+    fn get_title(ttl: bool, created: bool) -> Vec<String> {
+        let mut title = vec!["Key".to_string(), "Value".to_string()];
+
+        if created {
+            title.push("Created".to_string());
+        }
+        if ttl {
+            title.push("TTL".to_string());
+        }
+
+        title
+    }
+
+    pub fn list(&self, pretty: bool, ttl: bool, created: bool) {
+        let title = Self::get_title(ttl, created);
+
         if pretty {
             let mut table = Table::new();
-            let mut readable_ttl: String;
-
             table.set_format(*format::consts::FORMAT_NO_LINESEP_WITH_TITLE);
-            table.set_titles(row!["Key", "Value", "TTL"]);
+            let title_refs: Vec<&str> = title.iter().map(|s| s.as_str()).collect();
+            table.set_titles(Row::from(title_refs));
 
             for (key, value) in &self.memo.store {
-                match &value.ttl {
-                    Some(ttl) => {
-                        let lifetime = ttl.parse::<i64>().unwrap() - chrono::Utc::now().timestamp();
-                        readable_ttl = lifetime.to_string() + "s";
-                    }
-                    None => {
-                        readable_ttl = "".to_string();
-                    }
-                }
-
-                table.add_row(row![key, value.value, readable_ttl]);
+                let row = self.get_row(key, value, ttl, created);
+                let row_refs: Vec<&str> = row.iter().map(|s| s.as_str()).collect();
+                table.add_row(Row::from(row_refs));
             }
-
             table.printstd();
         } else {
             for (key, value) in &self.memo.store {
-                println!("{} : {}", key, value.value);
+                let row = self.get_row(key, value, ttl, created);
+                println!("{}", row.join(" - "));
             }
         }
     }
