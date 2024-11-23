@@ -33,8 +33,8 @@ pub fn cli() -> Command {
 
     let list = Command::new(MemoCommand::LIST)
         .about("List all memos")
-        .arg(arg!(-p --pretty  "Pretty print the output."));
-        .arg(arg!(--ttl "Show the TTL of each item."));
+        .arg(arg!(-p --pretty  "Pretty print the output."))
+        .arg(arg!(--ttl "Show the TTL of each item."))
         .arg(arg!(--created "Show the creation date of each item."));
 
     let set: Command = Command::new(MemoCommand::SET)

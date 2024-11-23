@@ -55,7 +55,9 @@ fn main() -> Result<(), Box<dyn Error>> {
         }
         Some((MemoCommand::LIST, sub_matches)) => {
             let pretty = sub_matches.get_flag("pretty");
-            command.list(pretty);
+            let ttl = sub_matches.get_flag("ttl");
+            let created = sub_matches.get_flag("created");
+            command.list(pretty, ttl, created);
         }
         Some((MemoCommand::SET, sub_matches)) => {
             let key: &String = sub_matches.get_one(MemoArg::KEY).unwrap();
